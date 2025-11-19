@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const hostname = window.location.hostname;
-  const endpoint = hostname.includes('-8000.app.github.dev')
+  let hostname = window.location.hostname;
+  if (hostname.includes('-3000.app.github.dev')) {
+    hostname = hostname.replace('-3000', '-8000');
+  }
+  const endpoint = hostname.includes('.app.github.dev')
     ? `https://${hostname}/api/users/`
     : 'http://localhost:8000/api/users/';
 
